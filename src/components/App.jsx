@@ -1,16 +1,24 @@
-export const App = () => {
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Navbar from './Navbar/Navbar';
+import Home from 'pages/Home';
+import Login from 'pages/Login';
+import Users from 'pages/Users';
+import Profile from 'pages/Profile';
+
+export function App() {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div className="App">
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+        </Routes>
+      </Router>
     </div>
   );
-};
+}
