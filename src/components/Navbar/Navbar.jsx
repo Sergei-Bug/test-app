@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 // import { Outlet } from 'react-router-dom';
 // import { Header, HeaderMenu /*StyledLink*/ } from './Layout.styled';
 // // import { UserBlock } from 'components/UserBlock/UserBlock';
@@ -29,7 +31,14 @@
 // };
 
 const Navbar = () => {
-  return <div>Navbar</div>;
+  return (
+    <div>
+      <NavLink to="/">Home</NavLink>
+      <NavLink to="/login">Log In</NavLink>
+      <NavLink to="/users">Users</NavLink>
+      <NavLink to="/profile">Profile</NavLink>
+    </div>
+  );
 };
 
 export default Navbar;
