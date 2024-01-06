@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
 // import { Outlet } from 'react-router-dom';
-// import { Header, HeaderMenu /*StyledLink*/ } from './Layout.styled';
 // // import { UserBlock } from 'components/UserBlock/UserBlock';
 // // import { useSelector } from 'react-redux';
 // // import { selectIsLoggedIn } from 'redux/auth/selectors';
@@ -31,12 +30,47 @@ import { NavLink } from 'react-router-dom';
 // };
 
 const Navbar = () => {
+  const activeLink = 'nav-list_link nav-list_link--active';
+  const NotActiveLink = 'nav-list_link';
+
   return (
     <div>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/login">Log In</NavLink>
-      <NavLink to="/users">Users</NavLink>
-      <NavLink to="/profile">Profile</NavLink>
+      <div className="header">
+        <div className="header-menu">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? activeLink : NotActiveLink
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              isActive ? activeLink : NotActiveLink
+            }
+          >
+            Log In
+          </NavLink>
+          <NavLink
+            to="/users"
+            className={({ isActive }) =>
+              isActive ? activeLink : NotActiveLink
+            }
+          >
+            Users
+          </NavLink>
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              isActive ? activeLink : NotActiveLink
+            }
+          >
+            Profile
+          </NavLink>
+        </div>
+      </div>
     </div>
   );
 };
