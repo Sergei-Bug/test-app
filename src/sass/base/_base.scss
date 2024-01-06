@@ -28,13 +28,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-scrollbar-thumb-light);
   border-radius: 12px;
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  color: var(--color-text-light);
 }
 
 ul {

@@ -1,5 +1,11 @@
+import UsersList from 'components/UsersList/UsersList';
+
 const Users = () => {
-  return <div>Content Users page</div>;
+  return (
+    <div className="wrapperRoot">
+      <UsersList />
+    </div>
+  );
 };
 
 export default Users;

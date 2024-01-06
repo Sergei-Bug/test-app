@@ -1,2 +1,9 @@
+// BASE
 @import './sass/base/base';
+@import './sass/base/wrapperRoot';
+
+// COMPONENTS
 @import './sass/components/navbar';
+
+// LAYOUT
+@import './sass/layout/home/home';
