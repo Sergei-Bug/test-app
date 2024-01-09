@@ -6,17 +6,17 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const { id } = useSelector(state => state.user);
 
-  console.log(id, '-------');
-
   const [login, setLogin] = useState('');
   const [pass, setPass] = useState('');
   const [fakePromise, setFakePromise] = useState(null);
 
   useEffect(() => {
-    new Promise(resolve => setFakePromise(() => resolve)).then(
-      ({ token, id }) => dispatch(setUser({ token, id }))
-    );
-  }, []);
+    if (!id) {
+      new Promise(resolve => setFakePromise(() => resolve)).then(
+        ({ token, id }) => dispatch(setUser({ token, id }))
+      );
+    }
+  }, [dispatch, id]);
 
   const handleLogin = () => {
     if (login === 'admin' && pass === 'pass12345') {

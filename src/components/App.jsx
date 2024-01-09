@@ -13,10 +13,9 @@ export function App() {
 
   useEffect(() => {
     if (localStorage.getItem('authorized') === 'true') {
-      console.log('--------------------------------------------');
       dispatch(setUser({ token: 'token', id: '123213123qweqweqwe' }));
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">
