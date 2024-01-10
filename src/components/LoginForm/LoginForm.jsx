@@ -28,20 +28,25 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={login}
-        onChange={e => setLogin(e.target.value)}
-        placeholder="login"
-      />
-      <input
-        type="password"
-        value={pass}
-        onChange={e => setPass(e.target.value)}
-        placeholder="password"
-      />
-      <button onClick={handleLogin}>Button</button>
+    <div className="wrapperRoot ">
+      <h1 className="title-login">Log in to application</h1>
+      <div className="form-login">
+        <p>Login</p>
+        <input
+          type="text"
+          value={login}
+          onChange={e => setLogin(e.target.value)}
+        />
+        <p>Password</p>
+        <input
+          type="password"
+          value={pass}
+          onChange={e => setPass(e.target.value)}
+        />
+        <button className="btn-login" onClick={handleLogin}>
+          Log in
+        </button>
+      </div>
     </div>
   );
 };
