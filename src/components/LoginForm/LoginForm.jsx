@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../redux/store/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -10,13 +11,18 @@ const LoginForm = () => {
   const [pass, setPass] = useState('');
   const [fakePromise, setFakePromise] = useState(null);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!id) {
       new Promise(resolve => setFakePromise(() => resolve)).then(
-        ({ token, id }) => dispatch(setUser({ token, id }))
+        ({ token, id }) => {
+          dispatch(setUser({ token, id }));
+          navigate('/users');
+        }
       );
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, navigate]);
 
   const handleLogin = () => {
     if (login === 'admin' && pass === 'pass12345') {
