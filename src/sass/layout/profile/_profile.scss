@@ -1,0 +1,31 @@
+.container-logout {
+  width: 800px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logout-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.logout-title {
+  margin: auto;
+}
+
+.btn-logout {
+  cursor: pointer;
+  color: white;
+  background-color: #db34bf;
+  padding: 3px;
+  border-radius: 4px;
+  border-color: transparent;
+  transition: background-color 250ms linear 0s, transform 150ms linear 0s;
+
+  &:hover {
+    background-color: #ad34db;
+    transform: translateY(2px);
+  }
+}

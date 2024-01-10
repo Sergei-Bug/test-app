@@ -1,5 +1,11 @@
 import { NavLink } from 'react-router-dom';
 
+import { Navigate } from 'react-router-dom';
+// import ProfileBlock from 'components/ProfileBlock/ProfileBlock';
+import { useDispatch } from 'react-redux';
+import { useAuth } from 'hooks/use-auth';
+import { removeUser } from 'redux/store/slices/userSlice';
+
 // import { Outlet } from 'react-router-dom';
 // // import { UserBlock } from 'components/UserBlock/UserBlock';
 // // import { useSelector } from 'react-redux';
@@ -70,8 +76,33 @@ const Navbar = () => {
             Profile
           </NavLink>
         </div>
+        <Profile />
       </div>
     </div>
+  );
+};
+
+const Profile = () => {
+  const dispatch = useDispatch();
+
+  const isAuth = useAuth();
+
+  return isAuth ? (
+    <div className="navbar-container-logout">
+      <div className="navbar-logout-block">
+        <NavLink className="nav-list_link navbar-logout-title" to="/profile">
+          Welcome, admin!
+        </NavLink>
+        <button
+          className="navbar-btn-logout"
+          onClick={() => dispatch(removeUser())}
+        >
+          Log out
+        </button>
+      </div>
+    </div>
+  ) : (
+    <Navigate to="/login" />
   );
 };
 
