@@ -1,43 +1,3 @@
-import { Link } from 'react-router-dom';
-
-// function UsersTable({ users, onDelete }) {
-//   return (
-//     <table>
-//       <thead>
-//         <tr>
-//           <th>ID</th>
-//           <th>Email</th>
-//           <th>First Name</th>
-//           <th>Last Name</th>
-//           <th>Date of Birth</th>
-//           <th>City</th>
-//           <th>Operations</th>
-//         </tr>
-//       </thead>
-//       <tbody>
-//         {users.map(user => (
-//           <tr key={user.id}>
-//             <td>{user.id}</td>
-//             <td>{user.email}</td>
-//             <td>{user.firstName}</td>
-//             <td>{user.lastName}</td>
-//             <td>{user.dateOfBirth}</td>
-//             <td>{user.city}</td>
-//             <td>
-//               <Link to={`/edit/${user.id}`}>
-//                 <button>Edit</button>
-//               </Link>
-//               <button onClick={() => onDelete(user.id)}>Delete</button>
-//             </td>
-//           </tr>
-//         ))}
-//       </tbody>
-//     </table>
-//   );
-// }
-
-// export default UsersTable;
-
 import { useState } from 'react';
 
 const initialValue = {
@@ -52,16 +12,53 @@ const initialValue = {
 function UsersTable() {
   const [userData, setUserData] = useState(initialValue);
   const [users, setUsers] = useState([]);
+  const [editableUserData, setEditableUserData] = useState({
+    isEdit: false,
+    userIndex: null,
+  });
+
+  const handleRemoveClick = index => {
+    setUsers(users.filter((user, userIndex) => userIndex !== index));
+  };
+
+  const isFilledFields =
+    userData.email &&
+    userData.firstName &&
+    userData.firstName &&
+    userData.dateOfBirth &&
+    userData.city;
 
   const handleSubmitUser = e => {
     e.preventDefault();
 
-    setUsers(prevState => [...prevState, userData]);
+    if (isFilledFields) {
+      if (editableUserData.isEdit) {
+        const editedData = users;
+        editedData.splice(editableUserData.userIndex, 1, userData);
 
-    setUserData(initialValue);
+        setUsers(editedData);
+
+        setEditableUserData({
+          isEdit: false,
+          userIndex: null,
+        });
+      } else {
+        setUsers(prevState => [...prevState, userData]);
+      }
+
+      setUserData(initialValue);
+    }
   };
 
-  console.log('userData: ', userData);
+  const handleCleanClick = () => setUserData(initialValue);
+
+  const handleEditClick = (data, index) => {
+    setUserData(data);
+    setEditableUserData({
+      isEdit: true,
+      userIndex: index,
+    });
+  };
 
   return (
     <div className="wrapperRoot">
@@ -80,18 +77,32 @@ function UsersTable() {
               </tr>
             </thead>
             <tbody>
-              {users.map(user => (
-                <tr key={user.id}>
-                  <td>{user.id}</td>
+              {users.map((user, index) => (
+                <tr>
+                  <td>{index + 1}</td>
                   <td>{user.email}</td>
                   <td>{user.firstName}</td>
                   <td>{user.lastName}</td>
                   <td>{user.dateOfBirth}</td>
                   <td>{user.city}</td>
                   <td>
-                    <Link to={`/edit/${user.id}`}>
+                    <div className="wrapper-ops-btn">
+                      <button
+                        className="edit-action"
+                        onClick={() => handleEditClick(user, index)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="edit-action"
+                        onClick={() => handleRemoveClick(index)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                    {/* <Link to={`/edit/${user.id}`}>
                       <button>Edit</button>
-                    </Link>
+                    </Link> */}
                     {/* <button onClick={() => onDelete(user.id)}>Delete</button> */}
                   </td>
                 </tr>
@@ -101,7 +112,7 @@ function UsersTable() {
         </div>
       </div>
       <div className="form-data">
-        <form onSubmit={handleSubmitUser}>
+        <form onSubmit={handleSubmitUser} onReset={handleCleanClick}>
           <input
             className="input-form"
             placeholder="Write your Email"
@@ -159,8 +170,12 @@ function UsersTable() {
           />
 
           <div className="buttons-wrapper">
-            <button className="form-btn" type="submit">
-              Add
+            <button
+              disabled={!isFilledFields}
+              className="form-btn"
+              type="submit"
+            >
+              {editableUserData.isEdit ? 'Edit' : 'Add'}
             </button>
             <button className="form-btn" type="reset">
               Clean

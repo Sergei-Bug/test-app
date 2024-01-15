@@ -30,6 +30,21 @@ th {
 
 th:first-child {
   min-width: 20px;
+  text-align: center;
+}
+
+td {
+  border: 1px solid grey;
+  padding: 5px;
+}
+
+td:first-child {
+  text-align: center;
+}
+
+.wrapper-ops-btn {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .input-form {
