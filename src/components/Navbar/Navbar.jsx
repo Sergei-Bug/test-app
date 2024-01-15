@@ -4,8 +4,8 @@ import { useAuth } from 'hooks/use-auth';
 import { removeUser } from 'redux/store/slices/userSlice';
 
 const Navbar = () => {
-  const activeLink = 'nav-list_link nav-list_link--active';
-  const NotActiveLink = 'nav-list_link';
+  const activeLink = 'nav-list-link nav-list-link--active';
+  const notActiveLink = 'nav-list-link';
   const { isAuth } = useAuth();
 
   return (
@@ -15,7 +15,7 @@ const Navbar = () => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? activeLink : NotActiveLink
+              isActive ? activeLink : notActiveLink
             }
           >
             Home
@@ -24,7 +24,7 @@ const Navbar = () => {
             <NavLink
               to="/login"
               className={({ isActive }) =>
-                isActive ? activeLink : NotActiveLink
+                isActive ? activeLink : notActiveLink
               }
             >
               Log In
@@ -33,7 +33,7 @@ const Navbar = () => {
           <NavLink
             to="/users"
             className={({ isActive }) =>
-              isActive ? activeLink : NotActiveLink
+              isActive ? activeLink : notActiveLink
             }
           >
             Users
@@ -41,7 +41,7 @@ const Navbar = () => {
           <NavLink
             to="/profile"
             className={({ isActive }) =>
-              isActive ? activeLink : NotActiveLink
+              isActive ? activeLink : notActiveLink
             }
           >
             Profile
@@ -66,7 +66,7 @@ const Logout = () => {
     isAuth && (
       <div className="navbar-container-logout">
         <div className="navbar-logout-block">
-          <NavLink className="nav-list_link navbar-logout-title" to="/profile">
+          <NavLink className="nav-list-link navbar-logout-title" to="/profile">
             Welcome, admin!
           </NavLink>
           <button className="navbar-btn-logout" onClick={handleLogOut}>

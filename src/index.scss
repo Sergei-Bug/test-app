@@ -3,9 +3,8 @@
 @import './sass/base/wrapperRoot';
 
 // COMPONENTS
-@import './sass/components/navbar';
+@import './components/Navbar/navbar';
+@import './components/LoginForm/loginForm';
 
-// LAYOUT
-@import './sass/layout/home/home';
-@import './sass/layout/login/login';
-@import './sass/layout/profile/profile';
+// PAGES
+@import './pages/Home/home';
