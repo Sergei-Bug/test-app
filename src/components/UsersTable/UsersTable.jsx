@@ -50,8 +50,6 @@ function UsersTable() {
     }
   };
 
-  const handleCleanClick = () => setUserData(initialValue);
-
   const handleEditClick = (data, index) => {
     setUserData(data);
     setEditableUserData({
@@ -63,6 +61,9 @@ function UsersTable() {
   return (
     <div className="wrapperRoot">
       <div className="wrapper-content">
+        <div className="wrapper-modal-btn">
+          <button className="modal-btn">Create</button>
+        </div>
         <div className="table-data">
           <table className="user-list-table">
             <thead>
@@ -100,10 +101,6 @@ function UsersTable() {
                         Delete
                       </button>
                     </div>
-                    {/* <Link to={`/edit/${user.id}`}>
-                      <button>Edit</button>
-                    </Link> */}
-                    {/* <button onClick={() => onDelete(user.id)}>Delete</button> */}
                   </td>
                 </tr>
               ))}
@@ -112,10 +109,10 @@ function UsersTable() {
         </div>
       </div>
       <div className="form-data">
-        <form onSubmit={handleSubmitUser} onReset={handleCleanClick}>
+        <form onSubmit={handleSubmitUser}>
+          <p className="title-input">Email</p>
           <input
             className="input-form"
-            placeholder="Write your Email"
             onChange={e =>
               setUserData(prevState => ({
                 ...prevState,
@@ -124,9 +121,9 @@ function UsersTable() {
             }
             value={userData.email}
           />
+          <p className="title-input">First Name</p>
           <input
             className="input-form"
-            placeholder="Write your First Name"
             onChange={e =>
               setUserData(prevState => ({
                 ...prevState,
@@ -135,9 +132,9 @@ function UsersTable() {
             }
             value={userData.firstName}
           />
+          <p className="title-input">Last Name</p>
           <input
             className="input-form"
-            placeholder="Write your Last Name"
             onChange={e =>
               setUserData(prevState => ({
                 ...prevState,
@@ -146,9 +143,9 @@ function UsersTable() {
             }
             value={userData.lastName}
           />
+          <p className="title-input">Date of Birth</p>
           <input
             className="input-form"
-            placeholder="Choose your Date of Birth"
             onChange={e =>
               setUserData(prevState => ({
                 ...prevState,
@@ -157,9 +154,9 @@ function UsersTable() {
             }
             value={userData.dateOfBirth}
           />
+          <p className="title-input">City</p>
           <input
             className="input-form"
-            placeholder="Write your City"
             onChange={e =>
               setUserData(prevState => ({
                 ...prevState,
@@ -170,15 +167,13 @@ function UsersTable() {
           />
 
           <div className="buttons-wrapper">
+            <button className="form-btn">Back</button>
             <button
               disabled={!isFilledFields}
               className="form-btn"
               type="submit"
             >
               {editableUserData.isEdit ? 'Edit' : 'Add'}
-            </button>
-            <button className="form-btn" type="reset">
-              Clean
             </button>
           </div>
         </form>

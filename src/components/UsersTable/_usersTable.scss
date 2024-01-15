@@ -1,8 +1,26 @@
 .wrapper-content {
   width: 800px;
   display: flex;
-  padding: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
   justify-content: space-between;
+  padding: 10px;
+}
+
+.modal-btn {
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  background-color: rgb(52, 152, 219);
+  padding: 5px 20px;
+  border-radius: 6px;
+  border-color: transparent;
+  transition: background-color 150ms linear 0s, transform 150ms linear 0s;
+
+  &:hover {
+    background-color: rgb(57, 176, 255);
+    transform: translateY(2px);
+  }
 }
 
 .table-data {
@@ -45,6 +63,10 @@ td:first-child {
 .wrapper-ops-btn {
   display: flex;
   justify-content: space-evenly;
+}
+
+.title-input {
+  font-size: 14px;
 }
 
 .input-form {
