@@ -27,7 +27,8 @@ export function App() {
           <Route path="/login" element={<Login />} />
           <Route
             path="/users"
-            element={<PrivateRoute component={<Users />} />}
+            // element={<PrivateRoute component={<Users />} />}
+            element={<Users />}
           />
           <Route
             path="/profile"

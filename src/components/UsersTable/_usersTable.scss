@@ -1,0 +1,49 @@
+.wrapper-content {
+  width: 800px;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.table-data {
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid grey;
+}
+
+th {
+  min-width: 100px;
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+  background-color: #d1ebcd;
+}
+
+th:first-child {
+  min-width: 20px;
+}
+
+.input-form {
+  padding: 5px;
+  margin: 5px 0;
+}
+
+.buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.form-btn {
+  width: 70px;
+}

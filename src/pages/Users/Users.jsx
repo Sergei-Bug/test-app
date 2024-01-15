@@ -1,9 +1,9 @@
-import UsersList from 'components/UsersList/UsersList';
+import UsersTable from '../../components/UsersTable/UsersTable';
 
 const Users = () => {
   return (
-    <div className="wrapperRoot">
-      <UsersList />
+    <div>
+      <UsersTable />
     </div>
   );
 };
