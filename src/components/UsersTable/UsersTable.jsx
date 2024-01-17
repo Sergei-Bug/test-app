@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const initialValue = {
   id: '',
@@ -9,13 +9,24 @@ const initialValue = {
   city: '',
 };
 
+const initContact = () => {
+  if (localStorage.getItem('contactsArray')) {
+    return JSON.parse(localStorage.getItem('contactsArray'));
+  }
+  return [];
+};
+
 function UsersTable() {
   const [userData, setUserData] = useState(initialValue);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(initContact());
   const [editableUserData, setEditableUserData] = useState({
     isEdit: false,
     userIndex: null,
   });
+
+  useEffect(() => {
+    localStorage.setItem('contactsArray', JSON.stringify(users));
+  }, [users]);
 
   const handleRemoveClick = index => {
     setUsers(users.filter((user, userIndex) => userIndex !== index));
@@ -43,7 +54,13 @@ function UsersTable() {
           userIndex: null,
         });
       } else {
-        setUsers(prevState => [...prevState, userData]);
+        setUsers(prevState => [
+          ...prevState,
+          {
+            ...userData,
+            id: (users[users.length - 1]?.id || users.length) + 1,
+          },
+        ]);
       }
 
       setUserData(initialValue);
@@ -78,32 +95,34 @@ function UsersTable() {
               </tr>
             </thead>
             <tbody>
-              {users.map((user, index) => (
-                <tr>
-                  <td>{index + 1}</td>
-                  <td>{user.email}</td>
-                  <td>{user.firstName}</td>
-                  <td>{user.lastName}</td>
-                  <td>{user.dateOfBirth}</td>
-                  <td>{user.city}</td>
-                  <td>
-                    <div className="wrapper-ops-btn">
-                      <button
-                        className="edit-action"
-                        onClick={() => handleEditClick(user, index)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="edit-action"
-                        onClick={() => handleRemoveClick(index)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+              {users?.length
+                ? users.map((user, index) => (
+                    <tr key={user.id}>
+                      <td>{user.id}</td>
+                      <td>{user.email}</td>
+                      <td>{user.firstName}</td>
+                      <td>{user.lastName}</td>
+                      <td>{user.dateOfBirth}</td>
+                      <td>{user.city}</td>
+                      <td>
+                        <div className="wrapper-ops-btn">
+                          <button
+                            className="edit-action"
+                            onClick={() => handleEditClick(user, index)}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="edit-action"
+                            onClick={() => handleRemoveClick(index)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                : null}
             </tbody>
           </table>
         </div>
