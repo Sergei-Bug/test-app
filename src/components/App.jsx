@@ -8,17 +8,31 @@ import Login from 'pages/Login/Login';
 import Users from 'pages/Users/Users';
 import Profile from 'pages/Profile/Profile';
 import PrivateRoute from 'utils/router/privateRoute';
+import { useSelector } from 'react-redux';
 
 export function App() {
   const dispatch = useDispatch();
+  const { isUserDataLoaded } = useSelector(state => state.user);
 
   useEffect(() => {
     if (localStorage.getItem('authorized') === 'true') {
-      dispatch(setUser({ token: 'token', id: '123213123qweqweqwe' }));
+      dispatch(
+        setUser({
+          token: 'token',
+          id: '123213123qweqweqwe',
+          isUserDataLoaded: true,
+        })
+      );
+    } else {
+      dispatch(
+        setUser({
+          isUserDataLoaded: true,
+        })
+      );
     }
   }, [dispatch]);
 
-  return (
+  return isUserDataLoaded ? (
     <div className="App">
       <Router>
         <Navbar />
@@ -27,8 +41,8 @@ export function App() {
           <Route path="/login" element={<Login />} />
           <Route
             path="/users"
-            // element={<PrivateRoute component={<Users />} />}
-            element={<Users />}
+            element={<PrivateRoute component={<Users />} />}
+            // element={<Users />}
           />
           <Route
             path="/profile"
@@ -37,5 +51,5 @@ export function App() {
         </Routes>
       </Router>
     </div>
-  );
+  ) : null;
 }
