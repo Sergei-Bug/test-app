@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { FaEdit } from 'react-icons/fa';
+import { RiDeleteBin7Fill } from 'react-icons/ri';
 
 const initialValue = {
   id: '',
@@ -107,16 +109,16 @@ function UsersTable() {
                       <td>
                         <div className="wrapper-ops-btn">
                           <button
-                            className="edit-action"
+                            className="btn-operation edit-action"
                             onClick={() => handleEditClick(user, index)}
                           >
-                            Edit
+                            <FaEdit />
                           </button>
                           <button
-                            className="edit-action"
+                            className="btn-operation remove-action"
                             onClick={() => handleRemoveClick(index)}
                           >
-                            Delete
+                            <RiDeleteBin7Fill />
                           </button>
                         </div>
                       </td>
@@ -128,7 +130,7 @@ function UsersTable() {
         </div>
       </div>
       <div className="form-data">
-        <form onSubmit={handleSubmitUser}>
+        <form className="form-add-user" onSubmit={handleSubmitUser}>
           <p className="title-input">Email</p>
           <input
             className="input-form"
@@ -192,7 +194,7 @@ function UsersTable() {
               className="form-btn"
               type="submit"
             >
-              {editableUserData.isEdit ? 'Edit' : 'Add'}
+              {editableUserData.isEdit ? 'Edit' : 'Save'}
             </button>
           </div>
         </form>

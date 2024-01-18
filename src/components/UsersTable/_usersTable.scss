@@ -11,20 +11,21 @@
   cursor: pointer;
   color: white;
   font-weight: 600;
-  background-color: rgb(52, 152, 219);
+  background-color: #ff802c;
   padding: 5px 20px;
   border-radius: 6px;
   border-color: transparent;
   transition: background-color 150ms linear 0s, transform 150ms linear 0s;
 
   &:hover {
-    background-color: rgb(57, 176, 255);
-    transform: translateY(2px);
+    background-color: #ff6600;
+    transform: scale(1.1);
   }
 }
 
 .table-data {
   width: 100%;
+  box-shadow: 6px 6px 25px 0px rgba(0, 0, 0, 0.37);
 }
 
 form {
@@ -38,12 +39,14 @@ form {
   border: 1px solid grey;
 }
 
-th {
+th:not(:last-child) {
   min-width: 100px;
   border: 1px solid grey;
   text-align: left;
   padding: 5px;
-  background-color: #d1ebcd;
+  color: white;
+  font-size: 14px;
+  background-color: #3aa2d1;
 }
 
 th:first-child {
@@ -51,18 +54,25 @@ th:first-child {
   text-align: center;
 }
 
-td {
+th:last-child {
+  width: 20px;
   border: 1px solid grey;
+  text-align: left;
   padding: 5px;
+  color: white;
+  font-size: 12px;
+  background-color: #3aa2d1;
+}
+
+td {
+  border: 1px solid lightgrey;
+  padding: 5px;
+  font-size: 14px;
+  background-color: white;
 }
 
 td:first-child {
   text-align: center;
-}
-
-.wrapper-ops-btn {
-  display: flex;
-  justify-content: space-evenly;
 }
 
 .title-input {
@@ -71,16 +81,31 @@ td:first-child {
 
 .input-form {
   padding: 5px;
-  margin: 5px 0;
+  margin-bottom: 5px;
 }
 
 .buttons-wrapper {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin: 10px 0;
+  margin-top: 10px;
 }
 
 .form-btn {
   width: 70px;
+}
+
+// OPERATION BUTTON
+
+.wrapper-ops-btn {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-operation {
+  display: flex;
+  padding: 0;
+  background-color: transparent;
+  border: transparent;
 }
