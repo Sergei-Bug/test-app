@@ -7,7 +7,7 @@
   padding: 10px;
 }
 
-.modal-btn {
+.open-modal-btn {
   cursor: pointer;
   color: white;
   font-weight: 600;
@@ -81,7 +81,7 @@ td:first-child {
 
 .input-form {
   padding: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .buttons-wrapper {
@@ -108,4 +108,5 @@ td:first-child {
   padding: 0;
   background-color: transparent;
   border: transparent;
+  cursor: pointer;
 }

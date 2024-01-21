@@ -1,3 +1,4 @@
+import Modal from 'components/Modal/Modal';
 import { useState, useEffect } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { RiDeleteBin7Fill } from 'react-icons/ri';
@@ -25,6 +26,7 @@ function UsersTable() {
     isEdit: false,
     userIndex: null,
   });
+  const [modalActive, setModalActive] = useState();
 
   useEffect(() => {
     localStorage.setItem('contactsArray', JSON.stringify(users));
@@ -66,10 +68,12 @@ function UsersTable() {
       }
 
       setUserData(initialValue);
+      setModalActive(false);
     }
   };
 
   const handleEditClick = (data, index) => {
+    setModalActive(true);
     setUserData(data);
     setEditableUserData({
       isEdit: true,
@@ -81,7 +85,12 @@ function UsersTable() {
     <div className="wrapperRoot">
       <div className="wrapper-content">
         <div className="wrapper-modal-btn">
-          <button className="modal-btn">Create</button>
+          <button
+            className="open-modal-btn"
+            onClick={() => setModalActive(true)}
+          >
+            Create
+          </button>
         </div>
         <div className="table-data">
           <table className="user-list-table">
@@ -129,76 +138,87 @@ function UsersTable() {
           </table>
         </div>
       </div>
-      <div className="form-data">
-        <form className="form-add-user" onSubmit={handleSubmitUser}>
-          <p className="title-input">Email</p>
-          <input
-            className="input-form"
-            onChange={e =>
-              setUserData(prevState => ({
-                ...prevState,
-                email: e.target.value,
-              }))
-            }
-            value={userData.email}
-          />
-          <p className="title-input">First Name</p>
-          <input
-            className="input-form"
-            onChange={e =>
-              setUserData(prevState => ({
-                ...prevState,
-                firstName: e.target.value,
-              }))
-            }
-            value={userData.firstName}
-          />
-          <p className="title-input">Last Name</p>
-          <input
-            className="input-form"
-            onChange={e =>
-              setUserData(prevState => ({
-                ...prevState,
-                lastName: e.target.value,
-              }))
-            }
-            value={userData.lastName}
-          />
-          <p className="title-input">Date of Birth</p>
-          <input
-            className="input-form"
-            onChange={e =>
-              setUserData(prevState => ({
-                ...prevState,
-                dateOfBirth: e.target.value,
-              }))
-            }
-            value={userData.dateOfBirth}
-          />
-          <p className="title-input">City</p>
-          <input
-            className="input-form"
-            onChange={e =>
-              setUserData(prevState => ({
-                ...prevState,
-                city: e.target.value,
-              }))
-            }
-            value={userData.city}
-          />
 
-          <div className="buttons-wrapper">
-            <button className="form-btn">Back</button>
-            <button
-              disabled={!isFilledFields}
-              className="form-btn"
-              type="submit"
-            >
-              {editableUserData.isEdit ? 'Edit' : 'Save'}
-            </button>
-          </div>
-        </form>
-      </div>
+      <Modal active={modalActive} setActive={setModalActive}>
+        <div className="form-data">
+          <form className="form-add-user" onSubmit={handleSubmitUser}>
+            <h1 className="modal-title">
+              {editableUserData.isEdit ? 'Please edit user' : 'Add new user'}
+            </h1>
+            <p className="title-input">Email</p>
+            <input
+              className="input-form"
+              onChange={e =>
+                setUserData(prevState => ({
+                  ...prevState,
+                  email: e.target.value,
+                }))
+              }
+              value={userData.email}
+            />
+            <p className="title-input">First Name</p>
+            <input
+              className="input-form"
+              onChange={e =>
+                setUserData(prevState => ({
+                  ...prevState,
+                  firstName: e.target.value,
+                }))
+              }
+              value={userData.firstName}
+            />
+            <p className="title-input">Last Name</p>
+            <input
+              className="input-form"
+              onChange={e =>
+                setUserData(prevState => ({
+                  ...prevState,
+                  lastName: e.target.value,
+                }))
+              }
+              value={userData.lastName}
+            />
+            <p className="title-input">Date of Birth</p>
+            <input
+              className="input-form"
+              onChange={e =>
+                setUserData(prevState => ({
+                  ...prevState,
+                  dateOfBirth: e.target.value,
+                }))
+              }
+              value={userData.dateOfBirth}
+            />
+            <p className="title-input">City</p>
+            <input
+              className="input-form"
+              onChange={e =>
+                setUserData(prevState => ({
+                  ...prevState,
+                  city: e.target.value,
+                }))
+              }
+              value={userData.city}
+            />
+
+            <div className="buttons-wrapper">
+              <button
+                className="form-btn"
+                onClick={() => setModalActive(false)}
+              >
+                Back
+              </button>
+              <button
+                disabled={!isFilledFields}
+                className="form-btn"
+                type="submit"
+              >
+                {editableUserData.isEdit ? 'Edit' : 'Save'}
+              </button>
+            </div>
+          </form>
+        </div>
+      </Modal>
     </div>
   );
 }
