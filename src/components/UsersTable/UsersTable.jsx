@@ -203,14 +203,14 @@ function UsersTable() {
 
             <div className="buttons-wrapper">
               <button
-                className="form-btn"
+                className="form-btn form-btn-back"
                 onClick={() => setModalActive(false)}
               >
                 Back
               </button>
               <button
                 disabled={!isFilledFields}
-                className="form-btn"
+                className="form-btn form-btn-confirm"
                 type="submit"
               >
                 {editableUserData.isEdit ? 'Edit' : 'Save'}

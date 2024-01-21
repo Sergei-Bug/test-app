@@ -28,11 +28,6 @@
   box-shadow: 6px 6px 25px 0px rgba(0, 0, 0, 0.37);
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
-
 .user-list-table {
   width: 100%;
   border-collapse: collapse;
@@ -75,26 +70,6 @@ td:first-child {
   text-align: center;
 }
 
-.title-input {
-  font-size: 14px;
-}
-
-.input-form {
-  padding: 5px;
-  margin-bottom: 10px;
-}
-
-.buttons-wrapper {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 10px;
-}
-
-.form-btn {
-  width: 70px;
-}
-
 // OPERATION BUTTON
 
 .wrapper-ops-btn {
@@ -109,4 +84,9 @@ td:first-child {
   background-color: transparent;
   border: transparent;
   cursor: pointer;
+  transition: 0.25s;
+
+  &:hover {
+    transform: scale(1.4);
+  }
 }

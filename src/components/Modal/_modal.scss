@@ -35,3 +35,55 @@
 .modal-content.active {
   transform: scale(1);
 }
+
+// FORM
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-input {
+  font-size: 14px;
+}
+
+.input-form {
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+// FORM BUTTONS
+
+.buttons-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.form-btn {
+  cursor: pointer;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 6px;
+  border-color: transparent;
+  transition: background-color 250ms linear 0s, transform 150ms linear 0s;
+}
+
+.form-btn-confirm {
+  background-color: rgb(52, 152, 219);
+
+  &:hover {
+    background-color: #0bd300;
+    transform: scale(1.1);
+  }
+}
+
+.form-btn-back {
+  background-color: rgb(52, 152, 219);
+
+  &:hover {
+    background-color: #ff4c4c;
+    transform: scale(1.1);
+  }
+}
