@@ -63,11 +63,17 @@ td {
   border: 1px solid lightgrey;
   padding: 5px;
   font-size: 14px;
-  background-color: white;
 }
 
 td:first-child {
   text-align: center;
+}
+
+.str-table {
+  background-color: white;
+  &:hover {
+    background-color: #ededed;
+  }
 }
 
 // OPERATION BUTTON

@@ -108,7 +108,7 @@ function UsersTable() {
             <tbody>
               {users?.length
                 ? users.map((user, index) => (
-                    <tr key={user.id}>
+                    <tr className="str-table" key={user.id}>
                       <td>{user.id}</td>
                       <td>{user.email}</td>
                       <td>{user.firstName}</td>
