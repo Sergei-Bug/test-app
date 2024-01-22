@@ -22,6 +22,7 @@ const initContact = () => {
 };
 
 function UsersTable() {
+  const [value, setValue] = useState('');
   const [userData, setUserData] = useState(initialValue);
   const [users, setUsers] = useState(initContact());
   const [editableUserData, setEditableUserData] = useState({
@@ -42,9 +43,19 @@ function UsersTable() {
   const isFilledFields =
     userData.email &&
     userData.firstName &&
-    userData.firstName &&
+    userData.lastName &&
     userData.dateOfBirth &&
     userData.city;
+
+  const filteredUsers = users.filter(user => {
+    return (
+      user.email.toLowerCase().includes(value.toLowerCase()) ||
+      user.firstName.toLowerCase().includes(value.toLowerCase()) ||
+      user.lastName.toLowerCase().includes(value.toLowerCase()) ||
+      user.dateOfBirth.toLowerCase().includes(value.toLowerCase()) ||
+      user.city.toLowerCase().includes(value.toLowerCase())
+    );
+  });
 
   const handleSubmitUser = e => {
     e.preventDefault();
@@ -106,6 +117,16 @@ function UsersTable() {
             Create
           </button>
         </div>
+        <div>
+          <form className="search-form">
+            <input
+              type="text"
+              placeholder="Search user"
+              className="search-input"
+              onChange={e => setValue(e.target.value)}
+            />
+          </form>
+        </div>
         <div className="table-data">
           <table className="user-list-table">
             <thead>
@@ -121,7 +142,7 @@ function UsersTable() {
             </thead>
             <tbody>
               {users?.length
-                ? users.map((user, index) => (
+                ? filteredUsers.map((user, index) => (
                     <tr className="str-table" key={user.id}>
                       <td>{user.id}</td>
                       <td>{user.email}</td>

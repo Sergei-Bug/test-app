@@ -79,6 +79,11 @@ form {
   }
 }
 
+.form-btn-confirm:disabled {
+  background-color: gray;
+  transform: scale(1);
+}
+
 .form-btn-back {
   background-color: rgb(52, 152, 219);
 
