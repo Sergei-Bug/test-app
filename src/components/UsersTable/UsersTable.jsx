@@ -2,6 +2,8 @@ import Modal from 'components/Modal/Modal';
 import { useState, useEffect } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { RiDeleteBin7Fill } from 'react-icons/ri';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialValue = {
   id: '',
@@ -34,6 +36,7 @@ function UsersTable() {
 
   const handleRemoveClick = index => {
     setUsers(users.filter((user, userIndex) => userIndex !== index));
+    userSuccessDeletedNotify();
   };
 
   const isFilledFields =
@@ -57,6 +60,7 @@ function UsersTable() {
           isEdit: false,
           userIndex: null,
         });
+        userSuccessEditedNotify();
       } else {
         setUsers(prevState => [
           ...prevState,
@@ -65,6 +69,7 @@ function UsersTable() {
             id: (users[users.length - 1]?.id || users.length) + 1,
           },
         ]);
+        userSuccessCreatedNotify();
       }
 
       setUserData(initialValue);
@@ -80,6 +85,15 @@ function UsersTable() {
       userIndex: index,
     });
   };
+
+  const userSuccessCreatedNotify = () =>
+    toast.success('User successfully created!');
+
+  const userSuccessDeletedNotify = () =>
+    toast.success('User deleted successfully!');
+
+  const userSuccessEditedNotify = () =>
+    toast.success('User data successfully updated!');
 
   return (
     <div className="wrapperRoot">
@@ -219,6 +233,17 @@ function UsersTable() {
           </form>
         </div>
       </Modal>
+      <ToastContainer
+        position="top-right"
+        autoClose={3500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }
