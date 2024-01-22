@@ -49,11 +49,11 @@ function UsersTable() {
 
   const filteredUsers = users.filter(user => {
     return (
-      user.email.toLowerCase().includes(value?.toLowerCase()) ||
-      user.firstName.toLowerCase().includes(value?.toLowerCase()) ||
-      user.lastName.toLowerCase().includes(value?.toLowerCase()) ||
-      user.dateOfBirth.toLowerCase().includes(value?.toLowerCase()) ||
-      user.city.toLowerCase().includes(value?.toLowerCase())
+      user.email?.toLowerCase().includes(value?.toLowerCase()) ||
+      user.firstName?.toLowerCase().includes(value?.toLowerCase()) ||
+      user.lastName?.toLowerCase().includes(value?.toLowerCase()) ||
+      user.dateOfBirth?.toLowerCase().includes(value?.toLowerCase()) ||
+      user.city?.toLowerCase().includes(value?.toLowerCase())
     );
   });
 
