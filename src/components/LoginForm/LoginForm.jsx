@@ -17,7 +17,7 @@ const LoginForm = () => {
     if (!id) {
       new Promise(resolve => setFakePromise(() => resolve)).then(
         ({ token, id }) => {
-          dispatch(setUser({ token, id }));
+          dispatch(setUser({ token, id, isUserDataLoaded: true }));
           navigate('/users');
         }
       );

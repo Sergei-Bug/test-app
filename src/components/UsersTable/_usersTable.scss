@@ -1,17 +1,31 @@
 .wrapper-content {
   width: 800px;
   display: flex;
-  padding: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
   justify-content: space-between;
+  padding: 10px;
+}
+
+.open-modal-btn {
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  background-color: #ff802c;
+  padding: 5px 20px;
+  border-radius: 6px;
+  border-color: transparent;
+  transition: background-color 150ms linear 0s, transform 150ms linear 0s;
+
+  &:hover {
+    background-color: #ff6600;
+    transform: scale(1.1);
+  }
 }
 
 .table-data {
   width: 100%;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
+  box-shadow: 6px 6px 25px 0px rgba(0, 0, 0, 0.37);
 }
 
 .user-list-table {
@@ -20,30 +34,65 @@ form {
   border: 1px solid grey;
 }
 
-th {
+th:not(:last-child) {
   min-width: 100px;
   border: 1px solid grey;
   text-align: left;
   padding: 5px;
-  background-color: #d1ebcd;
+  color: white;
+  font-size: 14px;
+  background-color: #3aa2d1;
 }
 
 th:first-child {
   min-width: 20px;
+  text-align: center;
 }
 
-.input-form {
+th:last-child {
+  width: 20px;
+  border: 1px solid grey;
+  text-align: left;
   padding: 5px;
-  margin: 5px 0;
+  color: white;
+  font-size: 12px;
+  background-color: #3aa2d1;
 }
 
-.buttons-wrapper {
+td {
+  border: 1px solid lightgrey;
+  padding: 5px;
+  font-size: 14px;
+}
+
+td:first-child {
+  text-align: center;
+}
+
+.str-table {
+  background-color: white;
+  &:hover {
+    background-color: #ededed;
+  }
+}
+
+// OPERATION BUTTON
+
+.wrapper-ops-btn {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin: 10px 0;
+  justify-content: center;
+  gap: 10px;
 }
 
-.form-btn {
-  width: 70px;
+.btn-operation {
+  display: flex;
+  padding: 0;
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+  transition: 0.25s;
+
+  &:hover {
+    transform: scale(1.4);
+  }
 }

@@ -29,6 +29,7 @@
 
   &:hover {
     background-color: rgb(57, 176, 255);
-    transform: translateY(2px);
+    // transform: translateY(2px);
+    transform: scale(1.1);
   }
 }

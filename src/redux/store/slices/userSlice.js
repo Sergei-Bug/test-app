@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   token: null,
-  id: null,
+  id: '',
+  isUserDataLoaded: false,
 };
 
 const userSlice = createSlice({
@@ -12,6 +13,7 @@ const userSlice = createSlice({
     setUser(state, action) {
       state.token = action.payload.token;
       state.id = action.payload.id;
+      state.isUserDataLoaded = action.payload.isUserDataLoaded;
     },
     removeUser(state) {
       state.token = null;
