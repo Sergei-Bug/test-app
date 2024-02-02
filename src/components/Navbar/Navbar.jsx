@@ -39,6 +39,14 @@ const Navbar = () => {
             Users
           </NavLink>
           <NavLink
+            to="/test"
+            className={({ isActive }) =>
+              isActive ? activeLink : notActiveLink
+            }
+          >
+            Test
+          </NavLink>
+          <NavLink
             to="/profile"
             className={({ isActive }) =>
               isActive ? activeLink : notActiveLink

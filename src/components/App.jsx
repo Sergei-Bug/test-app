@@ -6,6 +6,7 @@ import Navbar from './Navbar/Navbar';
 import Home from 'pages/Home/Home';
 import Login from 'pages/Login/Login';
 import Users from 'pages/Users/Users';
+import Test from 'pages/Test/Test';
 import Profile from 'pages/Profile/Profile';
 import PrivateRoute from 'utils/router/privateRoute';
 import { useSelector } from 'react-redux';
@@ -42,8 +43,8 @@ export function App() {
           <Route
             path="/users"
             element={<PrivateRoute component={<Users />} />}
-            // element={<Users />}
           />
+          <Route path="/test" element={<PrivateRoute component={<Test />} />} />
           <Route
             path="/profile"
             element={<PrivateRoute component={<Profile />} />}
