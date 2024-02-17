@@ -10,7 +10,7 @@ const UsersPage = () => {
     'Address',
   ]);
   const [searchText, setSearchText] = useState('');
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
   const handleSearchChange = e => {
     setSearchText(e.target.value);
@@ -28,13 +28,13 @@ const UsersPage = () => {
 
   const handleApplyChanges = () => {
     // Add table change
-    setShowModal(false);
+    // setShowModal(false);
   };
 
-  const handleModalClose = () => {
-    setSearchText('');
-    setShowModal(false);
-  };
+  // const handleModalClose = () => {
+  //   setSearchText('');
+  //   // setShowModal(false);
+  // };
 
   const handleDragEnd = result => {
     if (!result.destination) return;
@@ -48,33 +48,37 @@ const UsersPage = () => {
 
   return (
     <div>
-      <h2>Users Page</h2>
       {/* table component */}
-      <button onClick={() => setShowModal(true)}>Select Columns</button>
+      {/* <button onClick={() => setShowModal(true)}>Select Columns</button> */}
 
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={handleModalClose}>
-              &times;
-            </span>
-            <h3>Select Columns</h3>
+      {/* {showModal && ( */}
+      {/* <div className="modal"> */}
+      <div className="modal-content-select-columns">
+        {/* <span className="close" onClick={handleModalClose}>
+          &times;
+        </span> */}
+        <div className="modal-title-wrapper">
+          <h3 className="title-select-columns">Select columns for the grid</h3>
+        </div>
+
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <div className="select-modal-content">
             <input
               type="text"
-              placeholder="Search columns"
+              className="search-input-select"
+              placeholder="Search..."
               value={searchText}
               onChange={handleSearchChange}
             />
-            <DragDropContext onDragEnd={handleDragEnd}>
+            <div className="drag-drop-table">
               <Droppable droppableId="available-columns">
                 {provided => (
                   <div
-                    className="columns-container"
+                    className="columns-container columns-wrapper"
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >
                     <div className="available-columns">
-                      <h4>Available Columns</h4>
                       <ul>
                         {availableColumns
                           .filter(col =>
@@ -88,6 +92,7 @@ const UsersPage = () => {
                             >
                               {provided => (
                                 <li
+                                  className="columns-item"
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
@@ -107,16 +112,16 @@ const UsersPage = () => {
               <Droppable droppableId="selected-columns">
                 {provided => (
                   <div
-                    className="selected-columns"
+                    className="selected-columns columns-wrapper"
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >
-                    <h4>Selected Columns</h4>
                     <ul>
                       {selectedColumns.map((col, index) => (
                         <Draggable key={col} draggableId={col} index={index}>
                           {provided => (
                             <li
+                              className="columns-item"
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
@@ -131,11 +136,17 @@ const UsersPage = () => {
                   </div>
                 )}
               </Droppable>
-            </DragDropContext>
-            <button onClick={handleApplyChanges}>Apply</button>
+            </div>
           </div>
+        </DragDropContext>
+        <div className="modal-footer-wrapper">
+          <button className="modal-apply-btn" onClick={handleApplyChanges}>
+            Apply
+          </button>
         </div>
-      )}
+      </div>
+      {/* </div> */}
+      {/* )} */}
     </div>
   );
 };
