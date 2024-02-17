@@ -35,14 +35,10 @@ function UsersTable() {
 
   // +++++++++++++++++++ temporarily
   const [selectedColumns, setSelectedColumns] = useState([]);
-  const [availableColumns, setAvailableColumns] = useState([
-    'Name',
-    'Email',
-    'Phone',
-    'Address',
-  ]);
+  const [availableColumns, setAvailableColumns] = useState(
+    Object.keys(initialValue)
+  );
   const [searchText, setSearchText] = useState('');
-  // const [showModal, setShowModal] = useState(false);
 
   const handleSearchChange = e => {
     setSearchText(e.target.value);
@@ -60,13 +56,8 @@ function UsersTable() {
 
   const handleApplyChanges = () => {
     // Add table change
-    // setShowModal(false);
+    setAvailableColumns(false);
   };
-
-  // const handleModalClose = () => {
-  //   setSearchText('');
-  //   // setShowModal(false);
-  // };
 
   const handleDragEnd = result => {
     if (!result.destination) return;
@@ -317,14 +308,7 @@ function UsersTable() {
       >
         <div>
           {/* table component */}
-          {/* <button onClick={() => setShowModal(true)}>Select Columns</button> */}
-
-          {/* {showModal && ( */}
-          {/* <div className="modal"> */}
           <div className="modal-content-select-columns">
-            {/* <span className="close" onClick={handleModalClose}>
-          &times;
-        </span> */}
             <div className="modal-title-wrapper">
               <h3 className="title-select-columns">
                 Select columns for the grid
@@ -421,8 +405,6 @@ function UsersTable() {
               </button>
             </div>
           </div>
-          {/* </div> */}
-          {/* )} */}
         </div>
       </Modal>
       <ToastContainer
